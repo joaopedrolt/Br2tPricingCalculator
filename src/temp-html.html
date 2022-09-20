@@ -1,0 +1,58 @@
+<div>
+    <section className="input-field">
+      <div className="server-row">
+        <label htmlFor="server">Selecione o Servidor</label>
+        <select id="server" name="server">
+          <option value="r410" selected>R410</option>
+          <option value="r610">R610</option>
+          <option value="r710">R710</option>
+        </select>
+      </div>
+      <div className="ram-row">
+        <label htmlFor="ram">Quantidade de Memoria</label>
+        <select id="ram" name="ram">
+          <option value="8">8</option>
+          <option value="16">16</option>
+          <option value="32" selected>32</option>
+          <option value="64">64</option>
+          <option value="64">128</option>
+        </select>
+      </div>
+      <div className="storage-row">
+        <label htmlFor="type">Tipo</label>
+        <select id="type" name="type">
+          <option value="hd">HD</option>
+          <option value="ssd">SSD</option>
+        </select>
+        <label htmlFor="storage">Armazenamento</label>
+        <select id="storage" name="storage">
+          <option value="8">8</option>
+          <option value="16">16</option>
+          <option value="32" selected>32</option>
+          <option value="64">64</option>
+          <option value="64">128</option>
+        </select>
+        <label>Quantidade</label>
+        <input type="number" />
+        <button>+</button>
+        <table className="storage-cart">
+          <tr>
+            <th>Tipo</th>
+            <th>Armazenamento</th>
+            <th>Quantidade</th>
+          </tr>
+          <tr>
+            <td>HD</td>
+            <td>300Gb</td>
+            <td>3x</td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <section className="price-section">
+      <div>
+        <span>Preço</span>
+        <span>R$:{2}</span>
+      </div>
+    </section>
+  </div>
