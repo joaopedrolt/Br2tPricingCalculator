@@ -1,6 +1,6 @@
 const RightSide = () => {
 
-    let price: number = 0;
+    let price: number = 2000;
 
     return (
         <section className="right">
