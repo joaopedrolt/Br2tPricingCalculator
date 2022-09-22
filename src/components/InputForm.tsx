@@ -1,9 +1,9 @@
-import '../css/left.css'
+import '../css/inputform.css'
 import { XSvg } from '../assets/svg/X-Svg';
 
 const LeftSide = () => {
     return (
-        <section className='left'>
+        <section className='input-form'>
             <h1 className='title'>Configuração do Servidor</h1>
             <div className='input-field mt-20'>
                 <div className="server-row input-frame">

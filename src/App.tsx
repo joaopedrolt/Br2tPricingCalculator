@@ -1,13 +1,13 @@
-import LeftSide from "./components/LeftSide";
-import RightSide from "./components/RightSide";
+import InputForm from "./components/InputForm";
+import Output from "./components/Output";
 import './css/default.css'
 
 const App = ()=> {
 
   return (
     <>
-      <LeftSide />
-      <RightSide />
+      <InputForm />
+      <Output />
     </>
   );
 }
