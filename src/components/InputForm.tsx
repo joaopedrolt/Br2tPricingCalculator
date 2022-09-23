@@ -24,6 +24,14 @@ const LeftSide = () => {
                         <option value="64">128 GB</option>
                     </select>
                 </div>
+                <div className="cpu-row input-frame mt-30">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                    <h3>Cpu</h3>
+                    <select className='mt-16 select-style input-style vw-95' id="cpu" name="cpu">
+                        <option value="8">E5-2650</option>
+                        <option value="16">E5-2650 V2</option>
+                        <option value="32" selected>E5-2620</option>
+                    </select>
+                </div>
                 <div className="storage-row vw-95 container-xl mt-30">
                     <h3>Armazenamento</h3>
                     <p className='tips'>- Adicione os discos, respeitando o limite disponível.</p>
