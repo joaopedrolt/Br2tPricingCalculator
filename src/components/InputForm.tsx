@@ -1,36 +1,34 @@
 import '../css/inputform.css'
+import * as Select from './input-form/Select'
 import { XSvg } from '../assets/svg/X-Svg';
+import { Server } from '../types/Server';
+import { useState } from 'react';
 
 const LeftSide = () => {
+
+    const serverList: Server[] = [
+        { model: 'R410', memory: 128 },
+        { model: 'R710', memory: 64 },
+        { model: 'R510', memory: 32 },
+        { model: 'R610', memory: 16 }];
+
+    let [selectedModel, setModel] = useState('');
+
     return (
         <section className='input-form'>
             <h1 className='title'>Configuração do Servidor</h1>
             <div className='input-field mt-20'>
                 <div className="server-row input-frame">
                     <h3>Server</h3>
-                    <select className='mt-16 select-style input-style vw-95' id="server" name="server">
-                        <option value="r410" selected>R410</option>
-                        <option value="r610">R610</option>
-                        <option value="r710">R710</option>
-                    </select>
+                    <Select.SelectServer servers={serverList} selectedModel={selectedModel} setModel={setModel} />
                 </div>
                 <div className="ram-row input-frame mt-30">
                     <h3>Memória</h3>
-                    <select className='mt-16 select-style input-style vw-95' id="ram" name="ram">
-                        <option value="8">8 GB</option>
-                        <option value="16">16 GB</option>
-                        <option value="32" selected>32 GB</option>
-                        <option value="64">64 GB</option>
-                        <option value="64">128 GB</option>
-                    </select>
+                    <Select.SelectMemory servers={serverList} selectedModel={selectedModel} />
                 </div>
-                <div className="cpu-row input-frame mt-30">                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                <div className="cpu-row input-frame mt-30">
                     <h3>Cpu</h3>
-                    <select className='mt-16 select-style input-style vw-95' id="cpu" name="cpu">
-                        <option value="8">E5-2650</option>
-                        <option value="16">E5-2650 V2</option>
-                        <option value="32" selected>E5-2620</option>
-                    </select>
+                    <Select.SelectCpu />
                 </div>
                 <div className="storage-row vw-95 container-xl mt-30">
                     <h3>Armazenamento</h3>
