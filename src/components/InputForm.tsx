@@ -1,16 +1,25 @@
 import '../css/inputform.css'
 import * as Select from './input-form/Select'
+import * as Storage from './input-form/Storage'
 import { XSvg } from '../assets/svg/X-Svg';
-import { Server } from '../types/Server';
+import { Server, Cpu } from '../types/Server';
 import { useState } from 'react';
 
 const LeftSide = () => {
 
     const serverList: Server[] = [
-        { model: 'R410', memory: 128 },
-        { model: 'R710', memory: 64 },
-        { model: 'R510', memory: 32 },
-        { model: 'R610', memory: 16 }];
+        { model: 'R410', memory: 128, cpuFamily: ['5500', '5600'] },
+        { model: 'R730', memory: 64, cpuFamily: ['E5-2600 V3'] },
+        { model: 'R510', memory: 32, cpuFamily: ['E5-2600'] },
+        { model: 'R610', memory: 16, cpuFamily: ['5500', '5600'] }];
+
+    const cpuList: Cpu[] = [
+        { series: ['5500', '5600']/* , cpus: []  */},
+        { series: ['5600']/* , cpus: []  */},
+        { series: ['E5-2600 V3']/* , cpus: []  */},
+        { series: ['E5-2600']/* , cpus: []  */},
+        { series: ['5500']/* , cpus: []  */},
+    ]
 
     let [selectedModel, setModel] = useState('');
 
@@ -28,7 +37,7 @@ const LeftSide = () => {
                 </div>
                 <div className="cpu-row input-frame mt-30">
                     <h3>Cpu</h3>
-                    <Select.SelectCpu />
+                    <Select.SelectCpu servers={serverList} selectedModel={selectedModel} />
                 </div>
                 <div className="storage-row vw-95 container-xl mt-30">
                     <h3>Armazenamento</h3>
@@ -36,30 +45,11 @@ const LeftSide = () => {
                     <div>
                         <div className='mt-16'>
                             <h4>Tipo</h4>
-                            <div className='mt-16'>
-                                <div className='select-style input-style d-flex al-center'>
-                                    <input className='m-0' type="radio" name="type" value="hd" />
-                                    <span className='ml-10 fz-13'>HD SATA</span>
-                                </div>
-                                <div className='select-style input-style mt-16 d-flex al-center'>
-                                    <input className='m-0' type="radio" name="type" value="ssd" />
-                                    <span className='ml-10 fz-13'>HD SAS</span>
-                                </div>
-                                <div className='select-style input-style mt-16 d-flex al-center'>
-                                    <input className='m-0' type="radio" name="type" value="ssd" />
-                                    <span className='ml-10 fz-13'>SSD</span>
-                                </div>
-                            </div>
+                            <Storage.StorageTypeSelect />
                             <div className='d-flex mt-16'>
                                 <div className='storage-left'>
                                     <h4>Tamanho</h4>
-                                    <select className='select-style input-style mt-8' id="storage" name="storage">
-                                        <option value="8">8</option>
-                                        <option value="16">16</option>
-                                        <option value="32" selected>SAS 300GB</option>
-                                        <option value="64">64</option>
-                                        <option value="64">300</option>
-                                    </select>
+                                    <Storage.StorageSelect />
                                 </div>
                                 <div className='storage-right'>
                                     <h4 className='translate-h4'>Quantidade</h4>

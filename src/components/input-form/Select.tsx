@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MemorySelect, ServerSelect } from "../../types/Server";
+import { MemorySelect, ServerSelect, CpuSelect } from "../../types/Server";
 
 export const SelectServer = ({ servers, selectedModel, setModel }: ServerSelect) => {
 
@@ -38,8 +38,6 @@ export const SelectMemory = ({ servers, selectedModel }: MemorySelect) => {
 
     useEffect(() => {
 
-        console.log('a')
-
         servers.forEach((serverObj) => {
             if (serverObj.model == selectedModel) {
                 currentMemoryLimit = serverObj.memory;
@@ -64,10 +62,37 @@ export const SelectMemory = ({ servers, selectedModel }: MemorySelect) => {
     );
 }
 
-export const SelectCpu = () => {
+export const SelectCpu = ({ servers, selectedModel }: CpuSelect) => {
+
+    let currentCpuFamily: string[];
+
+    let [cpuFamily, setCpuFamily] = useState<string[]>(['']);
+
+    useEffect(() => {
+
+        servers.forEach((serverObj) => {
+            if (serverObj.model == selectedModel) {
+                currentCpuFamily = serverObj.cpuFamily;
+            }
+        })
+
+        /* console.log(currentCpuFamily) */
+
+        setCpuFamily(typeof currentCpuFamily != undefined ? currentCpuFamily : ['']);
+
+        /* console.log(cpuFamily); */
+
+    }, [selectedModel]);
+
     return (
         <select className='mt-16 select-style input-style vw-95' id="cpu" name="cpu">
-            <option>Em Desenvolvimento</option>
-        </select>
+            {
+                typeof cpuFamily != 'undefined' ? (
+                    cpuFamily.map((item) => (
+                        <option>{item}</option>
+                    ))
+                ) : <option>Selecione um Servidor</option>
+            }
+        </select >
     );
 }

@@ -88,3 +88,29 @@ td {
     font-size: 14px;
 }
 
+.radio{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid #6e6e6e;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.radio-selected-div{
+    border: 1px solid #2189ff;
+}
+
+.radio-selected{
+    background-color: #2189ff;
+    border: 1px solid #2189ff;
+}
+
+.inside-radio{
+    height: 7px;
+    width: 7px;
+    border-radius: 50%;
+    background-color: white;
+}
+
