@@ -31,4 +31,6 @@ export type CpuSelect = {
 
 export type StorageType = {
     type: number;
+    setActive: React.Dispatch<React.SetStateAction<number>>;
+    active: number;
 }

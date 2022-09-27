@@ -2,11 +2,9 @@ import { useState } from "react"
 import { StorageType } from "../../types/Server";
 
 
-export const StorageTypeUi = ({ type }: StorageType) => {
+export const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
 
     let typeString: string = "";
-
-    let [selected, setSelected] = useState(false);
 
     switch (type) {
         case 1:
@@ -20,31 +18,38 @@ export const StorageTypeUi = ({ type }: StorageType) => {
             break;
     }
 
-    
     const handleClick = () => {
-        setSelected;
+        setActive(type);
     }
 
+    function handleActive() {
+        return active == type ? true : false;
+    }
+
+    let response = handleActive();
+
     return (
-        <div className={'select-style input-style d-flex mt-16 al-center'} onClick={handleClick}>
-            <div className={"radio"}>
-                <div className="inside-radio"></div>
+        <>
+            <div className={'select-style input-style d-flex mt-16 al-center' + (response == true ? ' radio-selected-div' : '')} onClick={handleClick}>
+                <div className={"radio" + (response == true ? ' radio-selected' : '')}>
+                    <div className="inside-radio"></div>
+                </div>
+                <span className='ml-10 fz-13'>{typeString}</span>
             </div>
-            <span className='ml-10 fz-13'>{typeString}</span>
-        </div>
+        </>
     );
 
 }
 
 export const StorageTypeSelect = () => {
 
-    let [diskType, setDiskType] = useState(0);
+    let [active, setActive] = useState(0);
 
     return (
         <div className='mt-16'>
-            <StorageTypeUi type={1} />
-            <StorageTypeUi type={2} />
-            <StorageTypeUi type={3} />
+            <StorageTypeUi setActive={setActive} active={active} type={1} />
+            <StorageTypeUi setActive={setActive} active={active} type={2} />
+            <StorageTypeUi setActive={setActive} active={active} type={3} />
         </div>
     )
 

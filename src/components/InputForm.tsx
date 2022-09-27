@@ -14,11 +14,11 @@ const LeftSide = () => {
         { model: 'R610', memory: 16, cpuFamily: ['5500', '5600'] }];
 
     const cpuList: Cpu[] = [
-        { series: ['5500', '5600']/* , cpus: []  */},
-        { series: ['5600']/* , cpus: []  */},
-        { series: ['E5-2600 V3']/* , cpus: []  */},
-        { series: ['E5-2600']/* , cpus: []  */},
-        { series: ['5500']/* , cpus: []  */},
+        { series: ['5500', '5600']/* , cpus: []  */ },
+        { series: ['5600']/* , cpus: []  */ },
+        { series: ['E5-2600 V3']/* , cpus: []  */ },
+        { series: ['E5-2600']/* , cpus: []  */ },
+        { series: ['5500']/* , cpus: []  */ },
     ]
 
     let [selectedModel, setModel] = useState('');
