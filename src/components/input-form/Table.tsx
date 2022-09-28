@@ -9,7 +9,8 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     const newRow: Row = { id, disk, amount };
 
     function rowsUpdate(activeRows: Row[], newRow: Row) {
-        if (newRow.disk.model != '' || newRow.amount == 0) {
+        if (newRow.disk.model != '' && newRow.amount != 0) {
+            console.log(newRow.amount);
             const newArray = [...activeRows, newRow];
             return newArray.filter(row => row.disk.model != '');
         }

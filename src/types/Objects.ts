@@ -20,3 +20,7 @@ export type Row = {
     disk: Disk;
     amount: number;
 }
+
+export type Receipt = {
+    
+}

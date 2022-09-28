@@ -25,7 +25,7 @@ const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
         return active == type ? true : false;
     }
 
-    let response = handleActive();
+    const response = handleActive();
 
     return (
         <>
