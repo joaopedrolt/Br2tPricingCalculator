@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { StorageType } from "../../types/Server";
+import { SelectDisk, SelectStorageType, StorageType } from "../../types/Server";
 
 
 export const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
@@ -41,7 +41,7 @@ export const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
 
 }
 
-export const StorageTypeSelect = () => {
+export const StorageTypeSelect = ({setCurrentDiskType}: SelectStorageType) => {
 
     let [active, setActive] = useState(0);
 
@@ -55,7 +55,7 @@ export const StorageTypeSelect = () => {
 
 }
 
-export const StorageSelect = () => {
+export const StorageSelect = ({disks}: SelectDisk) => {
 
     return (
         <select className='select-style input-style mt-8' id="storage" name="storage">

@@ -34,3 +34,16 @@ export type StorageType = {
     setActive: React.Dispatch<React.SetStateAction<number>>;
     active: number;
 }
+
+export type SelectStorageType = {
+    setCurrentDiskType: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export type Disk = {
+    model: string;
+    type: number;
+}
+
+export type SelectDisk = {
+    disks: Disk[];
+}

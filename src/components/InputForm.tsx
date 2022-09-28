@@ -2,7 +2,7 @@ import '../css/inputform.css'
 import * as Select from './input-form/Select'
 import * as Storage from './input-form/Storage'
 import { XSvg } from '../assets/svg/X-Svg';
-import { Server, Cpu } from '../types/Server';
+import { Server, Cpu, Disk } from '../types/Server';
 import { useState } from 'react';
 
 const LeftSide = () => {
@@ -21,7 +21,16 @@ const LeftSide = () => {
         { series: ['5500']/* , cpus: []  */ },
     ]
 
+    const diskList: Disk[] = [
+        { model: 'Ssd 300GB', type: 3 },
+        { model: 'Hd 300GB' , type: 1 },
+        { model: 'Hd 600GB' , type: 2},
+        { model: 'Ssd 1600GB', type: 3},
+        { model: 'Hd 900GB' , type: 2}
+    ]
+
     let [selectedModel, setModel] = useState('');
+    let [currentDiskType, setCurrentDiskType] = useState(0);
 
     return (
         <section className='input-form'>
@@ -45,11 +54,11 @@ const LeftSide = () => {
                     <div>
                         <div className='mt-16'>
                             <h4>Tipo</h4>
-                            <Storage.StorageTypeSelect />
+                            <Storage.StorageTypeSelect setCurrentDiskType={setCurrentDiskType}/>
                             <div className='d-flex mt-16'>
                                 <div className='storage-left'>
                                     <h4>Tamanho</h4>
-                                    <Storage.StorageSelect />
+                                    <Storage.StorageSelect disks={diskList} />
                                 </div>
                                 <div className='storage-right'>
                                     <h4 className='translate-h4'>Quantidade</h4>
