@@ -41,9 +41,11 @@ export const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
 
 }
 
-export const StorageTypeSelect = ({setCurrentDiskType}: SelectStorageType) => {
+export const StorageTypeSelect = ({ setCurrentDiskType }: SelectStorageType) => {
 
     let [active, setActive] = useState(0);
+
+    setCurrentDiskType(active);
 
     return (
         <div className='mt-16'>
@@ -51,19 +53,28 @@ export const StorageTypeSelect = ({setCurrentDiskType}: SelectStorageType) => {
             <StorageTypeUi setActive={setActive} active={active} type={2} />
             <StorageTypeUi setActive={setActive} active={active} type={3} />
         </div>
-    )
+    );
 
 }
 
-export const StorageSelect = ({disks}: SelectDisk) => {
+export const StorageSelect = ({ disks, currentDiskType }: SelectDisk) => {
 
     return (
         <select className='select-style input-style mt-8' id="storage" name="storage">
-            <option value="8">8</option>
-            <option value="16">16</option>
-            <option value="32" selected>SAS 300GB</option>
-            <option value="64">64</option>
-            <option value="64">300</option>
+            {
+                disks.map((item, index) => (
+                    <>
+                        {
+                            currentDiskType == item.type ? (<option key={index}>{item.model}</option>) :
+                                (<option disabled hidden></option>)
+                        }
+
+                    </>
+                ))
+            }
+            {
+                currentDiskType == 0 ? (<option>Selecione um Tipo de Armazenamento</option>) : (<></>)
+            }
         </select>
     )
 

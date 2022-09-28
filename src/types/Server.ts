@@ -46,4 +46,5 @@ export type Disk = {
 
 export type SelectDisk = {
     disks: Disk[];
+    currentDiskType: number;
 }

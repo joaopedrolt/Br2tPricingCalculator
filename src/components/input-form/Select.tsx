@@ -88,8 +88,8 @@ export const SelectCpu = ({ servers, selectedModel }: CpuSelect) => {
         <select className='mt-16 select-style input-style vw-95' id="cpu" name="cpu">
             {
                 typeof cpuFamily != 'undefined' ? (
-                    cpuFamily.map((item) => (
-                        <option>{item}</option>
+                    cpuFamily.map((item, index) => (
+                        <option key={index}>{item}</option>
                     ))
                 ) : <option>Selecione um Servidor</option>
             }
