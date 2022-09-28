@@ -1,8 +1,7 @@
 import { useState } from "react"
-import { SelectDisk, SelectStorageType, StorageType } from "../../types/Server";
+import { SelectDisk, SelectStorageType, StorageAddType, StorageType } from "../../types/Props";
 
-
-export const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
+const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
 
     let typeString: string = "";
 
@@ -57,10 +56,26 @@ export const StorageTypeSelect = ({ setCurrentDiskType }: SelectStorageType) => 
 
 }
 
-export const StorageSelect = ({ disks, currentDiskType }: SelectDisk) => {
+export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk }: SelectDisk) => {
+
+    let [selected, setSelected] = useState('');
+
+    if (selected == '') {
+        setSelected('Selecione um Tipo de Armazenamento');
+    }
+
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        let model = e.target.value;
+        setSelected(model);
+        if (model != 'Selecione um Tipo de Armazenamento') {
+            setCurrentDisk({ model: model, type: 0 });
+        } else {
+            setCurrentDisk({ model: '', type: 0 });
+        }
+    }
 
     return (
-        <select className='select-style input-style mt-8' id="storage" name="storage">
+        <select className='select-style input-style mt-8' id="storage" name="storage" value={selected} onChange={handleSelect}>
             {
                 disks.map((item, index) => (
                     <>
@@ -73,9 +88,31 @@ export const StorageSelect = ({ disks, currentDiskType }: SelectDisk) => {
                 ))
             }
             {
-                currentDiskType == 0 ? (<option>Selecione um Tipo de Armazenamento</option>) : (<></>)
+                currentDiskType == 0 ? (<option value={''}>Selecione um Tipo de Armazenamento</option>) : (<></>)
             }
         </select>
+    )
+
+}
+
+export const StorageAdd = ({ setDiskAmount, setAddTableRow }: StorageAddType) => {
+
+    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        if (e.target.value) {
+            let input = parseInt(e.target.value)
+            setDiskAmount(input);
+        }
+    }
+
+    const handleClick = () => {
+        setAddTableRow(true);
+    }
+
+    return (
+        <div className='d-flex al-center'>
+            <input className='select-style input-style mt-8 disk-amount' onChange={handleChange} type="number" />
+            <button className='storage-add' onClick={handleClick}>+</button>
+        </div>
     )
 
 }

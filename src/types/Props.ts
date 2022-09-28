@@ -1,16 +1,4 @@
-import React from "react";
-
-export type Server = {
-    model: string;
-    memory: number;
-    cpuFamily: string[];
-    bays?: number;
-}
-
-export type Cpu = {
-    series: string[];
-    /* cpus: string[]; */
-}
+import { Server, Disk, Row } from './Objects'
 
 export type ServerSelect = {
     setModel: React.Dispatch<React.SetStateAction<string>>;
@@ -39,12 +27,22 @@ export type SelectStorageType = {
     setCurrentDiskType: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export type Disk = {
-    model: string;
-    type: number;
-}
-
 export type SelectDisk = {
     disks: Disk[];
     currentDiskType: number;
+    setCurrentDisk: React.Dispatch<React.SetStateAction<Disk>>;
+}
+
+export type StorageAddType = {
+    setDiskAmount: React.Dispatch<React.SetStateAction<number>>;
+    setAddTableRow: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
+export type TableReceiptRow = {
+    disk: Disk;
+    amount: number;
+    addTableRow: boolean;
+    setAddTableRow: React.Dispatch<React.SetStateAction<boolean>>;
+    setRows: React.Dispatch<React.SetStateAction<Row[]>>;
+    rows: Row[];
 }

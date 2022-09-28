@@ -1,8 +1,9 @@
 import '../css/inputform.css'
 import * as Select from './input-form/Select'
 import * as Storage from './input-form/Storage'
-import { Server, Cpu, Disk } from '../types/Server';
+import { Server, Cpu, Disk, Row } from '../types/Objects';
 import { useState } from 'react';
+import { TableReceipt } from './input-form/Table';
 
 const LeftSide = () => {
 
@@ -21,15 +22,21 @@ const LeftSide = () => {
     ]
 
     const diskList: Disk[] = [
-        { model: 'Ssd 300GB', type: 3 },
-        { model: 'Hd 300GB' , type: 1 },
-        { model: 'Hd 600GB' , type: 2},
-        { model: 'Ssd 1600GB', type: 3},
-        { model: 'Hd 900GB' , type: 2}
+        { model: 'SSD 300GB', type: 3 },
+        { model: 'HD 300GB', type: 1 },
+        { model: 'HD 600GB', type: 2 },
+        { model: 'SSD 1600GB', type: 3 },
+        { model: 'HD 900GB', type: 2 }
     ]
 
     let [selectedModel, setModel] = useState('');
     let [currentDiskType, setCurrentDiskType] = useState(0);
+
+    let [currentDisk, setCurrentDisk] = useState<Disk>({ model: '', type: 0 });
+    let [diskAmount, setDiskAmount] = useState(0);
+    let [addTableRow, setAddTableRow] = useState(false);
+
+    let [rows, setRows] = useState<Row[]>([])
 
     return (
         <section className='input-form'>
@@ -53,21 +60,19 @@ const LeftSide = () => {
                     <div>
                         <div className='mt-16'>
                             <h4>Tipo</h4>
-                            <Storage.StorageTypeSelect setCurrentDiskType={setCurrentDiskType}/>
+                            <Storage.StorageTypeSelect setCurrentDiskType={setCurrentDiskType} />
                             <div className='d-flex mt-16'>
                                 <div className='storage-left'>
                                     <h4>Tamanho</h4>
-                                    <Storage.StorageSelect disks={diskList} currentDiskType={currentDiskType} />
+                                    <Storage.StorageSelect disks={diskList} currentDiskType={currentDiskType}
+                                        setCurrentDisk={setCurrentDisk} />
                                 </div>
                                 <div className='storage-right'>
                                     <h4 className='translate-h4'>Quantidade</h4>
-                                    <div className='d-flex al-center'>
-                                        <input className='select-style input-style mt-8 disk-amount' type="number" />
-                                        <button className='storage-add'>+</button>
-                                    </div>
+                                    <Storage.StorageAdd setDiskAmount={setDiskAmount} setAddTableRow={setAddTableRow} />
                                 </div>
                             </div>
-                           
+                            <TableReceipt disk={currentDisk} amount={diskAmount} addTableRow={addTableRow} setAddTableRow={setAddTableRow} rows={rows} setRows={setRows} />
                         </div>
                     </div>
                 </div>

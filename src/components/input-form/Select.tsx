@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MemorySelect, ServerSelect, CpuSelect } from "../../types/Server";
+import { MemorySelect, ServerSelect, CpuSelect } from "../../types/Props";
 
 export const SelectServer = ({ servers, selectedModel, setModel }: ServerSelect) => {
 
@@ -44,7 +44,7 @@ export const SelectMemory = ({ servers, selectedModel }: MemorySelect) => {
             }
         })
 
-        let filterMemoryRange = memoryRange.filter((size) => size <= currentMemoryLimit);
+        const filterMemoryRange = memoryRange.filter((size) => size <= currentMemoryLimit);
         setMemoryRange(filterMemoryRange);
 
     }, [selectedModel]);
