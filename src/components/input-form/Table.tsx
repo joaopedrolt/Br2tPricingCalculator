@@ -8,9 +8,10 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     const id = activeRows.length;
     const newRow: Row = { id, disk, amount };
 
+    let firstUse = true;
+
     function rowsUpdate(activeRows: Row[], newRow: Row) {
         if (newRow.disk.model != '' && newRow.amount != 0) {
-            console.log(newRow.amount);
             const newArray = [...activeRows, newRow];
             return newArray.filter(row => row.disk.model != '');
         }
@@ -23,10 +24,8 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     }
 
     const handleClick = (id: number) => {
-        console.log(rows)
         const newRows = rows.filter((item) => item.id !== id);
         setRows(newRows);
-        console.log(rows)
     }
 
     return (
