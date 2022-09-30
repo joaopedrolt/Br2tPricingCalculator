@@ -53,4 +53,5 @@ export type TableReceiptRow = {
     setAddTableRow: React.Dispatch<React.SetStateAction<boolean>>;
     setRows: React.Dispatch<React.SetStateAction<Row[]>>;
     rows: Row[];
+    setCurrentDisk: React.Dispatch<React.SetStateAction<Disk>>;
 }

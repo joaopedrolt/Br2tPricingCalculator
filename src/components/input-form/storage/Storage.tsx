@@ -100,10 +100,15 @@ export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk }: Select
 
 export const StorageAdd = ({ setDiskAmount, setAddTableRow }: StorageAddType) => {
 
+    console.log()
+
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
             let input = parseInt(e.target.value)
             setDiskAmount(input);
+        }
+        else {
+            setDiskAmount(0);
         }
     }
 

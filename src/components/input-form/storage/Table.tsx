@@ -2,13 +2,11 @@ import { XSvg } from "../../../assets/svg/X-Svg";
 import { Row } from "../../../types/Objects";
 import { TableReceiptRow } from "../../../types/Props";
 
-export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRows, rows }: TableReceiptRow) => {
+export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRows, rows, setCurrentDisk }: TableReceiptRow) => {
 
     const activeRows = rows;
     const id = activeRows.length;
     const newRow: Row = { id, disk, amount };
-
-    let firstUse = true;
 
     function rowsUpdate(activeRows: Row[], newRow: Row) {
         if (newRow.disk.model != '' && newRow.amount != 0) {
@@ -21,6 +19,7 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     if (addTableRow) {
         setRows(rowsUpdate(activeRows, newRow));
         setAddTableRow(false);
+        setCurrentDisk({ model: '', type: 0 });
     }
 
     const handleClick = (id: number) => {

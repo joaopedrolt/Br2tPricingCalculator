@@ -14,6 +14,8 @@ const StorageField = ({ disks }: StorageFieldType) => {
 
     let [rows, setRows] = useState<Row[]>([]);
 
+    console.log(diskAmount);
+
     return (
         <>
             <h3>Armazenamento</h3>
@@ -33,7 +35,8 @@ const StorageField = ({ disks }: StorageFieldType) => {
                             <Storage.StorageAdd setDiskAmount={setDiskAmount} setAddTableRow={setAddTableRow} />
                         </div>
                     </div>
-                    <TableReceipt disk={currentDisk} amount={diskAmount} addTableRow={addTableRow} setAddTableRow={setAddTableRow} rows={rows} setRows={setRows} />
+                    <TableReceipt disk={currentDisk} amount={diskAmount} addTableRow={addTableRow}
+                        setAddTableRow={setAddTableRow} rows={rows} setRows={setRows} setCurrentDisk={setCurrentDisk} />
                 </div>
             </div>
         </>
