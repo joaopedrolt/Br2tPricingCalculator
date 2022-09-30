@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { MemorySelect, ServerSelect, CpuSelect } from "../../types/Props";
+import { MemorySelect, ServerSelect, CpuSelect } from "../../../types/Props";
 
 export const SelectServer = ({ servers, selectedModel, setModel }: ServerSelect) => {
 

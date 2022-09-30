@@ -1,6 +1,6 @@
-import { XSvg } from "../../assets/svg/X-Svg";
-import { Row } from "../../types/Objects";
-import { TableReceiptRow } from "../../types/Props";
+import { XSvg } from "../../../assets/svg/X-Svg";
+import { Row } from "../../../types/Objects";
+import { TableReceiptRow } from "../../../types/Props";
 
 export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRows, rows }: TableReceiptRow) => {
 
@@ -23,10 +23,8 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     }
 
     const handleClick = (id: number) => {
-        console.log(rows)
         const newRows = rows.filter((item) => item.id !== id);
         setRows(newRows);
-        console.log(rows)
     }
 
     return (

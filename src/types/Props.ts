@@ -1,5 +1,13 @@
 import { Server, Disk, Row } from './Objects'
 
+export type SelectFieldType = {
+    servers: Server[];
+}
+
+export type StorageFieldType = {
+    disks: Disk[];
+}
+
 export type ServerSelect = {
     setModel: React.Dispatch<React.SetStateAction<string>>;
     servers: Server[];

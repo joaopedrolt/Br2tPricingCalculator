@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { SelectDisk, SelectStorageType, StorageAddType, StorageType } from "../../types/Props";
+import { SelectDisk, SelectStorageType, StorageAddType, StorageType } from "../../../types/Props";
 
 const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
 
