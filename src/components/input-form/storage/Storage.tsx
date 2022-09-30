@@ -77,6 +77,9 @@ export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk }: Select
     return (
         <select className='select-style input-style mt-8' id="storage" name="storage" value={selected} onChange={handleSelect}>
             {
+                currentDiskType != 0 ? (<option value={''} hidden>Selecione um Disco</option>) : (<></>)
+            }
+            {
                 disks.map((item, index) => (
                     <>
                         {

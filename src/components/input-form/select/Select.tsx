@@ -3,20 +3,13 @@ import { MemorySelect, ServerSelect, CpuSelect } from "../../../types/Props";
 
 export const SelectServer = ({ servers, selectedModel, setModel }: ServerSelect) => {
 
-    let [firstUse, setFirstUse] = useState(false);
-
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setModel(e.target.value);
-        setFirstUse(true);
     }
 
     return (
         <select className='mt-16 select-style input-style vw-95' value={selectedModel} onChange={handleSelect} id="server" name="server">
-
-            {!firstUse &&
-                <option hidden>Selecione um Servidor</option>
-            }
-
+            <option hidden>Selecione um Servidor</option>
             {
                 servers.length > 0 ? (
                     servers.map((item, index) => (
