@@ -1,38 +1,50 @@
+import { useEffect, useState } from 'react';
 import '../css/output.css'
+import { Receipt } from '../types/Objects';
+import { OutputType } from '../types/Props';
 
-const RightSide = () => {
 
-    let price: number = 3000;
-    let receipt: string = "Dell R410";
+const RightSide = ({ receipt }: OutputType) => {
 
     return (
         <section className="right">
             <div className='container-xl receipt d-flex column mt-16 al-center'>
                 <div className='top-card-receipt d-flex jc-center column'>
-                    <h2>{receipt}</h2>
-                    <span>PowerEdge</span>
+                    <h2>{receipt.server.model}</h2>
+                    <span>{receipt.server.brand}</span>
                 </div>
                 <div className='mt-16 middle-card-receipt d-flex jc-center column'>
                     <h4>Resumo</h4>
                     <table className="receipt-review">
                         <tr className='table-row-r'>
-                            <td className='row-amount'>1x</td>
-                            <td className='row-product'>R410</td>
-                            <td className='row-price'>R$1000</td>
+                            <td className='row-amount'>{receipt.server.model == 'Selecione um Servidor' ? '---' : '1x'}</td>
+                            <td className='row-product'>{receipt.server.model == 'Selecione um Servidor' ? '---' : receipt.server.model}</td>
+                            <td className='row-price'>{receipt.server.price == 0 ? '---' : receipt.server.price}</td>
                         </tr>
                         <tr className='table-row-r'>
-                            <td className='row-amount'>3x</td>
-                            <td className='row-product'>Sas 300GB</td>
-                            <td className='row-price'>R$600</td>
+                            <td className='row-amount'>{receipt.cpu.model == '' ? '---' : (receipt.cpu.amount + 'x')}</td>
+                            <td className='row-product'>{receipt.cpu.model == '' ? '---' : receipt.cpu.model}</td>
+                            <td className='row-price'>{receipt.cpu.price == 0 ? '---' : receipt.cpu.price}</td>
                         </tr>
                         <tr className='table-row-r'>
-                            <td className='row-amount'>1x</td>
-                            <td className='row-product'>64GB</td>
-                            <td className='row-price'>R$600</td>
+                            <td className='row-amount'>{receipt.memory.size == 0 ? '---' : '1x'}</td>
+                            <td className='row-product'>{receipt.memory.size == 0 ? '---' : (receipt.memory.size + 'GB')}</td>
+                            <td className='row-price'>{receipt.memory.price == 0 ? '---' : receipt.memory.price}</td>
+                        </tr>
+                        <tr className='table-row-r'>
+                            {
+                                receipt.storage.map((item) => (
+                                    <>
+                                        <td className='row-amount'>{item.amount == 0 ? '---' : (item.amount + 'x')}</td>
+                                        <td className='row-product'>{item.model == '' ? '---' : item.model}</td>
+                                        <td className='row-price'>{item.price == 0 ? '---' : item.price}</td>
+                                    </>
+                                ))
+                            }
                         </tr>
                     </table>
                 </div>
-                <span className='mt-16 span-price'>Preço: R${price}</span>
+                <span className='mt-16 span-price'>Preço: R$ 0000,00</span>
             </div>
         </section>
     )

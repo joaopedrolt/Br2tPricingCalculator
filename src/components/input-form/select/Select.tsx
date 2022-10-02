@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { MemorySelect, ServerSelect, CpuSelect } from "../../../types/Props";
 
-export const SelectServer = ({ servers, selectedModel, setModel }: ServerSelect) => {
+export const SelectServer = ({ servers, selectedModel, setModel, setCurrentServer}: ServerSelect) => {
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setModel(e.target.value);
@@ -21,7 +21,7 @@ export const SelectServer = ({ servers, selectedModel, setModel }: ServerSelect)
     );
 }
 
-export const SelectMemory = ({ servers, selectedModel }: MemorySelect) => {
+export const SelectMemory = ({ servers, selectedModel, setCurrentMemory }: MemorySelect) => {
 
     let currentMemoryLimit: number = 0;
 
@@ -55,7 +55,7 @@ export const SelectMemory = ({ servers, selectedModel }: MemorySelect) => {
     );
 }
 
-export const SelectCpu = ({ servers, selectedModel }: CpuSelect) => {
+export const SelectCpu = ({ servers, selectedModel, setCurrentCpu }: CpuSelect) => {
 
     let currentCpuFamily: string[];
 
@@ -69,11 +69,7 @@ export const SelectCpu = ({ servers, selectedModel }: CpuSelect) => {
             }
         })
 
-        /* console.log(currentCpuFamily) */
-
         setCpuFamily(typeof currentCpuFamily != undefined ? currentCpuFamily : ['']);
-
-        /* console.log(cpuFamily); */
 
     }, [selectedModel]);
 
@@ -82,7 +78,7 @@ export const SelectCpu = ({ servers, selectedModel }: CpuSelect) => {
             {
                 typeof cpuFamily != 'undefined' ? (
                     cpuFamily.map((item, index) => (
-                        <option key={index}>{item}</option>
+                        <option key={index}>2x - {item}</option>
                     ))
                 ) : <option>Selecione um Servidor</option>
             }

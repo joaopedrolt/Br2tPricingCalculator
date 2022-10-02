@@ -2,7 +2,7 @@ import { XSvg } from "../../../assets/svg/X-Svg";
 import { Row } from "../../../types/Objects";
 import { TableReceiptRow } from "../../../types/Props";
 
-export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRows, rows, setCurrentDisk }: TableReceiptRow) => {
+export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRows, rows, setAdded }: TableReceiptRow) => {
 
     const activeRows = rows;
     const id = activeRows.length;
@@ -11,6 +11,7 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     function rowsUpdate(activeRows: Row[], newRow: Row) {
         if (newRow.disk.model != '' && newRow.amount != 0) {
             const newArray = [...activeRows, newRow];
+            setAdded(true);
             return newArray.filter(row => row.disk.model != '');
         }
         return activeRows;
@@ -19,7 +20,6 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
     if (addTableRow) {
         setRows(rowsUpdate(activeRows, newRow));
         setAddTableRow(false);
-        setCurrentDisk({ model: '', type: 0 });
     }
 
     const handleClick = (id: number) => {
@@ -35,7 +35,7 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
                 <th className='remove'>Remover</th>
             </tr>
             {
-                rows.map((item, index) => (
+                rows.map((item) => (
                     <tr className='table-row'>
                         <td>{item.amount}x</td>
                         <td>{item.disk.model}</td>

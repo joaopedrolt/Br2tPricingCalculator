@@ -14,7 +14,7 @@ const StorageField = ({ disks }: StorageFieldType) => {
 
     let [rows, setRows] = useState<Row[]>([]);
 
-    console.log(diskAmount);
+    let [added, setAdded] = useState(false);
 
     return (
         <>
@@ -23,12 +23,12 @@ const StorageField = ({ disks }: StorageFieldType) => {
             <div>
                 <div className='mt-16'>
                     <h4>Tipo</h4>
-                    <Storage.StorageTypeSelect setCurrentDiskType={setCurrentDiskType} />
+                    <Storage.StorageTypeSelect setCurrentDiskType={setCurrentDiskType} added={added} setAdded={setAdded} />
                     <div className='d-flex mt-16'>
                         <div className='storage-left'>
                             <h4>Tamanho</h4>
                             <Storage.StorageSelect disks={disks} currentDiskType={currentDiskType}
-                                setCurrentDisk={setCurrentDisk} />
+                                setCurrentDisk={setCurrentDisk} added={added} setAdded={setAdded} />
                         </div>
                         <div className='storage-right'>
                             <h4 className='translate-h4'>Quantidade</h4>
@@ -36,7 +36,7 @@ const StorageField = ({ disks }: StorageFieldType) => {
                         </div>
                     </div>
                     <TableReceipt disk={currentDisk} amount={diskAmount} addTableRow={addTableRow}
-                        setAddTableRow={setAddTableRow} rows={rows} setRows={setRows} setCurrentDisk={setCurrentDisk} />
+                        setAddTableRow={setAddTableRow} rows={rows} setRows={setRows} setAdded={setAdded} />
                 </div>
             </div>
         </>

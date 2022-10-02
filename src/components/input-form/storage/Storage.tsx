@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { SelectDisk, SelectStorageType, StorageAddType, StorageType } from "../../../types/Props";
 
 const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
@@ -40,11 +40,18 @@ const StorageTypeUi = ({ type, setActive, active }: StorageType) => {
 
 }
 
-export const StorageTypeSelect = ({ setCurrentDiskType }: SelectStorageType) => {
+export const StorageTypeSelect = ({ setCurrentDiskType, added, setAdded }: SelectStorageType) => {
 
     let [active, setActive] = useState(0);
 
     setCurrentDiskType(active);
+
+    useEffect(() => {
+        if (added == true) {
+            setActive(0);
+            setAdded(false);
+        }
+    }, [added]);
 
     return (
         <div className='mt-16'>
@@ -56,7 +63,7 @@ export const StorageTypeSelect = ({ setCurrentDiskType }: SelectStorageType) => 
 
 }
 
-export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk }: SelectDisk) => {
+export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk, added, setAdded }: SelectDisk) => {
 
     let [selected, setSelected] = useState('');
 
@@ -73,6 +80,13 @@ export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk }: Select
             setCurrentDisk({ model: '', type: 0 });
         }
     }
+
+    useEffect(() => {
+        if (added == true) {
+            setCurrentDisk({ model: '', type: 0 });
+            setAdded(false);
+        }
+    }, [added]);
 
     return (
         <select className='select-style input-style mt-8' id="storage" name="storage" value={selected} onChange={handleSelect}>
@@ -100,11 +114,9 @@ export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk }: Select
 
 export const StorageAdd = ({ setDiskAmount, setAddTableRow }: StorageAddType) => {
 
-    console.log()
-
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.value) {
-            let input = parseInt(e.target.value)
+            let input = parseInt(e.target.value);
             setDiskAmount(input);
         }
         else {
