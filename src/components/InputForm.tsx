@@ -8,10 +8,10 @@ import { useEffect, useState } from 'react';
 const LeftSide = ({ setReceipt }: InputFormType) => {
 
     const serverList: Server[] = [
-        { brand: 'Dell', model: 'R410', memory: 128, cpuFamily: ['5500', '5600'], price: 2000 },
-        { brand: 'Dell', model: 'R730', memory: 64, cpuFamily: ['E5-2600 V3'], price: 2000 },
-        { brand: 'Dell', model: 'R510', memory: 32, cpuFamily: ['E5-2600'], price: 2000 },
-        { brand: 'Dell', model: 'R610', memory: 16, cpuFamily: ['5500', '5600'], price: 2000 }];
+        { brand: 'Dell PowerEdge', model: 'R410', memory: 128, cpuFamily: ['5500', '5600'], price: 2050 },
+        { brand: 'Dell PowerEdge', model: 'R730', memory: 64, cpuFamily: ['E5-2600 V3'], price: 3000 },
+        { brand: 'Dell PowerEdge', model: 'R510', memory: 32, cpuFamily: ['E5-2600'], price: 4000 },
+        { brand: 'Dell PowerEdge', model: 'R610', memory: 16, cpuFamily: ['5500', '5600'], price: 2000 }];
 
     const diskList: Disk[] = [
         { model: 'SSD 300GB', type: 3, price: 300 },
@@ -22,7 +22,7 @@ const LeftSide = ({ setReceipt }: InputFormType) => {
     ]
 
     let [currentServer, setCurrentServer] = useState<OutputServer>({
-        model: 'B',
+        model: 'Selecione um Servidor',
         brand: '',
         price: 0
     });
@@ -37,6 +37,7 @@ const LeftSide = ({ setReceipt }: InputFormType) => {
     });
     
     let [currentStorage, setCurrentStorage] = useState<OutputStorage[]>([{
+        id: 0,
         model: '',
         price: 0,
         amount: 0
@@ -57,7 +58,7 @@ const LeftSide = ({ setReceipt }: InputFormType) => {
             <div className='input-field mt-20'>
                 <SelectField servers={serverList} setCurrentServer={setCurrentServer} setCurrentCpu={setCurrentCpu} setCurrentMemory={setCurrentMemory} />
                 <div className="storage-row vw-95 container-xl mt-30">
-                    <StorageField disks={diskList} />
+                    <StorageField disks={diskList} setCurrentStorage={setCurrentStorage} currentStorage={currentStorage}/>
                 </div>
             </div>
         </section>

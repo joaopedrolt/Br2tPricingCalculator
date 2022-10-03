@@ -19,29 +19,27 @@ const RightSide = ({ receipt }: OutputType) => {
                         <tr className='table-row-r'>
                             <td className='row-amount'>{receipt.server.model == 'Selecione um Servidor' ? '---' : '1x'}</td>
                             <td className='row-product'>{receipt.server.model == 'Selecione um Servidor' ? '---' : receipt.server.model}</td>
-                            <td className='row-price'>{receipt.server.price == 0 ? '---' : receipt.server.price}</td>
+                            <td className='row-price'>{receipt.server.price == 0 ? '---' : ('R$:' + receipt.server.price)}</td>
                         </tr>
                         <tr className='table-row-r'>
                             <td className='row-amount'>{receipt.cpu.model == '' ? '---' : (receipt.cpu.amount + 'x')}</td>
                             <td className='row-product'>{receipt.cpu.model == '' ? '---' : receipt.cpu.model}</td>
-                            <td className='row-price'>{receipt.cpu.price == 0 ? '---' : receipt.cpu.price}</td>
+                            <td className='row-price'>{receipt.cpu.price == 0 ? '---' : ('R$:' + receipt.cpu.price)}</td>
                         </tr>
                         <tr className='table-row-r'>
                             <td className='row-amount'>{receipt.memory.size == 0 ? '---' : '1x'}</td>
                             <td className='row-product'>{receipt.memory.size == 0 ? '---' : (receipt.memory.size + 'GB')}</td>
-                            <td className='row-price'>{receipt.memory.price == 0 ? '---' : receipt.memory.price}</td>
+                            <td className='row-price'>{receipt.memory.price == 0 ? '---' : ('R$:' + receipt.memory.price)}</td>
                         </tr>
-                        <tr className='table-row-r'>
-                            {
-                                receipt.storage.map((item) => (
-                                    <>
-                                        <td className='row-amount'>{item.amount == 0 ? '---' : (item.amount + 'x')}</td>
-                                        <td className='row-product'>{item.model == '' ? '---' : item.model}</td>
-                                        <td className='row-price'>{item.price == 0 ? '---' : item.price}</td>
-                                    </>
-                                ))
-                            }
-                        </tr>
+                        {
+                            receipt.storage.map((item) => (
+                                <tr className='table-row-r'>
+                                    <td className='row-amount'>{item.amount == 0 ? '---' : (item.amount + 'x')}</td>
+                                    <td className='row-product'>{item.model == '' ? '---' : item.model}</td>
+                                    <td className='row-price'>{item.price == 0 ? '---' : ('R$:' + item.price * item.amount)}</td>
+                                </tr>
+                            ))
+                        }
                     </table>
                 </div>
                 <span className='mt-16 span-price'>Preço: R$ 0000,00</span>

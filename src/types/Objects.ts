@@ -41,6 +41,7 @@ export type OutputMemory = {
 }
 
 export type OutputStorage = {
+    id: number,
     model: string,
     price: number,
     amount: number

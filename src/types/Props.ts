@@ -1,4 +1,4 @@
-import { Server, Disk, Row, Receipt, OutputServer, OutputCpu, OutputMemory } from './Objects'
+import { Server, Disk, Row, Receipt, OutputServer, OutputCpu, OutputMemory, OutputStorage } from './Objects'
 
 export type SelectFieldType = {
     servers: Server[];
@@ -9,6 +9,8 @@ export type SelectFieldType = {
 
 export type StorageFieldType = {
     disks: Disk[];
+    setCurrentStorage: React.Dispatch<React.SetStateAction<OutputStorage[]>>;
+    currentStorage: OutputStorage[];
 }
 
 export type ServerSelect = {
@@ -48,6 +50,7 @@ export type SelectDisk = {
     setCurrentDisk: React.Dispatch<React.SetStateAction<Disk>>;
     added: boolean;
     setAdded: React.Dispatch<React.SetStateAction<boolean>>;
+    setCurrentDiskType: React.Dispatch<React.SetStateAction<number>>;
 }
 
 export type StorageAddType = {
@@ -63,6 +66,8 @@ export type TableReceiptRow = {
     setRows: React.Dispatch<React.SetStateAction<Row[]>>;
     rows: Row[];
     setAdded: React.Dispatch<React.SetStateAction<boolean>>;
+    setCurrentStorage: React.Dispatch<React.SetStateAction<OutputStorage[]>>;
+    currentStorage: OutputStorage[];
 }
 
 export type OutputType = {

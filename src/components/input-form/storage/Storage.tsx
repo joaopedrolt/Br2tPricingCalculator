@@ -63,7 +63,7 @@ export const StorageTypeSelect = ({ setCurrentDiskType, added, setAdded }: Selec
 
 }
 
-export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk, added, setAdded }: SelectDisk) => {
+export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk, added, setAdded, setCurrentDiskType }: SelectDisk) => {
 
     let [selected, setSelected] = useState('');
 
@@ -75,15 +75,21 @@ export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk, added, s
         let model = e.target.value;
         setSelected(model);
         if (model != 'Selecione um Tipo de Armazenamento') {
-            setCurrentDisk({ model: model, type: 0 });
+            disks.forEach((disk) => {
+                if (disk.model == e.target.value) {
+                    setCurrentDisk({ model: disk.model, type: disk.type, price: disk.price });
+                }
+            })
         } else {
-            setCurrentDisk({ model: '', type: 0 });
+            setCurrentDisk({ model: '', type: 0, price: 0 });
         }
     }
 
     useEffect(() => {
         if (added == true) {
-            setCurrentDisk({ model: '', type: 0 });
+            setCurrentDisk({ model: '', type: 0, price: 0 });
+            setCurrentDiskType(0);
+            setSelected('Selecione um Disco')
             setAdded(false);
         }
     }, [added]);
@@ -97,10 +103,10 @@ export const StorageSelect = ({ disks, currentDiskType, setCurrentDisk, added, s
                 disks.map((item, index) => (
                     <>
                         {
+
                             currentDiskType == item.type ? (<option key={index}>{item.model}</option>) :
                                 (<option disabled hidden></option>)
                         }
-
                     </>
                 ))
             }

@@ -1,10 +1,19 @@
 import { useEffect, useState } from "react";
 import { MemorySelect, ServerSelect, CpuSelect } from "../../../types/Props";
 
-export const SelectServer = ({ servers, selectedModel, setModel, setCurrentServer}: ServerSelect) => {
+export const SelectServer = ({ servers, selectedModel, setModel, setCurrentServer }: ServerSelect) => {
 
     const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
         setModel(e.target.value);
+        servers.forEach((serverObj) => {
+            if (serverObj.model == e.target.value) {
+                setCurrentServer({
+                    model: serverObj.model,
+                    brand: serverObj.brand,
+                    price: serverObj.price
+                });
+            }
+        })
     }
 
     return (
@@ -29,6 +38,8 @@ export const SelectMemory = ({ servers, selectedModel, setCurrentMemory }: Memor
 
     let [filteredMemoryRange, setMemoryRange] = useState([0]);
 
+    let [memoryValue, setValue] = useState('');
+
     useEffect(() => {
 
         servers.forEach((serverObj) => {
@@ -42,8 +53,16 @@ export const SelectMemory = ({ servers, selectedModel, setCurrentMemory }: Memor
 
     }, [selectedModel]);
 
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setValue(e.target.value);
+        setCurrentMemory({
+            size: parseInt(e.target.value),
+            price: 10
+        });
+    }
+
     return (
-        <select className='mt-16 select-style input-style vw-95' id="server" name="server">
+        <select className='mt-16 select-style input-style vw-95' value={memoryValue} onChange={handleSelect} id="server" name="server">
             {
                 filteredMemoryRange.length > 0 ? (
                     filteredMemoryRange.map((item, index) => (
@@ -61,6 +80,8 @@ export const SelectCpu = ({ servers, selectedModel, setCurrentCpu }: CpuSelect) 
 
     let [cpuFamily, setCpuFamily] = useState<string[]>(['']);
 
+    let [cpuValue, setValue] = useState('');
+
     useEffect(() => {
 
         servers.forEach((serverObj) => {
@@ -73,12 +94,21 @@ export const SelectCpu = ({ servers, selectedModel, setCurrentCpu }: CpuSelect) 
 
     }, [selectedModel]);
 
+    const handleSelect = (e: React.ChangeEvent<HTMLSelectElement>) => {
+        setValue(e.target.value);
+        setCurrentCpu({
+            model: e.target.value,
+            price: 100,
+            amount: 2
+        });
+    }
+
     return (
-        <select className='mt-16 select-style input-style vw-95' id="cpu" name="cpu">
+        <select className='mt-16 select-style input-style vw-95' value={cpuValue} onChange={handleSelect} id="cpu" name="cpu">
             {
                 typeof cpuFamily != 'undefined' ? (
                     cpuFamily.map((item, index) => (
-                        <option key={index}>2x - {item}</option>
+                        <option key={index}>{item}</option>
                     ))
                 ) : <option>Selecione um Servidor</option>
             }

@@ -4,11 +4,11 @@ import { TableReceipt } from './Table';
 import { Row, Disk } from '../../../types/Objects';
 import { StorageFieldType } from '../../../types/Props';
 
-const StorageField = ({ disks }: StorageFieldType) => {
+const StorageField = ({ disks, setCurrentStorage, currentStorage }: StorageFieldType) => {
 
     let [currentDiskType, setCurrentDiskType] = useState(0);
 
-    let [currentDisk, setCurrentDisk] = useState<Disk>({ model: '', type: 0 });
+    let [currentDisk, setCurrentDisk] = useState<Disk>({ model: '', type: 0, price: 0 });
     let [diskAmount, setDiskAmount] = useState(0);
     let [addTableRow, setAddTableRow] = useState(false);
 
@@ -27,7 +27,7 @@ const StorageField = ({ disks }: StorageFieldType) => {
                     <div className='d-flex mt-16'>
                         <div className='storage-left'>
                             <h4>Tamanho</h4>
-                            <Storage.StorageSelect disks={disks} currentDiskType={currentDiskType}
+                            <Storage.StorageSelect disks={disks} currentDiskType={currentDiskType} setCurrentDiskType={setCurrentDiskType}
                                 setCurrentDisk={setCurrentDisk} added={added} setAdded={setAdded} />
                         </div>
                         <div className='storage-right'>
@@ -36,7 +36,8 @@ const StorageField = ({ disks }: StorageFieldType) => {
                         </div>
                     </div>
                     <TableReceipt disk={currentDisk} amount={diskAmount} addTableRow={addTableRow}
-                        setAddTableRow={setAddTableRow} rows={rows} setRows={setRows} setAdded={setAdded} />
+                        setAddTableRow={setAddTableRow} rows={rows} setRows={setRows}
+                        setAdded={setAdded} setCurrentStorage={setCurrentStorage} currentStorage={currentStorage} />
                 </div>
             </div>
         </>
