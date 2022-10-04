@@ -40,6 +40,8 @@ export const SelectMemory = ({ servers, selectedModel, setCurrentMemory }: Memor
 
     let [memoryValue, setValue] = useState('');
 
+    let [justSelected, setSelected] = useState(false);
+
     useEffect(() => {
 
         servers.forEach((serverObj) => {
@@ -47,6 +49,12 @@ export const SelectMemory = ({ servers, selectedModel, setCurrentMemory }: Memor
                 currentMemoryLimit = serverObj.memory;
             }
         })
+
+        if(selectedModel != ""){
+            setSelected(true);
+        } else {
+            setSelected(false);
+        }
 
         const filterMemoryRange = memoryRange.filter((size) => size <= currentMemoryLimit);
         setMemoryRange(filterMemoryRange);
@@ -63,6 +71,10 @@ export const SelectMemory = ({ servers, selectedModel, setCurrentMemory }: Memor
 
     return (
         <select className='mt-16 select-style input-style vw-95' value={memoryValue} onChange={handleSelect} id="server" name="server">
+            {
+               justSelected ? (<option hidden selected value={0}>Selecione o Tamanho</option>) :
+               (<></>)
+            }
             {
                 filteredMemoryRange.length > 0 ? (
                     filteredMemoryRange.map((item, index) => (
@@ -82,6 +94,8 @@ export const SelectCpu = ({ servers, selectedModel, setCurrentCpu }: CpuSelect) 
 
     let [cpuValue, setValue] = useState('');
 
+    let [justSelected, setSelected] = useState(false);
+
     useEffect(() => {
 
         servers.forEach((serverObj) => {
@@ -89,6 +103,12 @@ export const SelectCpu = ({ servers, selectedModel, setCurrentCpu }: CpuSelect) 
                 currentCpuFamily = serverObj.cpuFamily;
             }
         })
+
+        if(selectedModel != ""){
+            setSelected(true);
+        } else {
+            setSelected(false);
+        }
 
         setCpuFamily(typeof currentCpuFamily != undefined ? currentCpuFamily : ['']);
 
@@ -105,6 +125,10 @@ export const SelectCpu = ({ servers, selectedModel, setCurrentCpu }: CpuSelect) 
 
     return (
         <select className='mt-16 select-style input-style vw-95' value={cpuValue} onChange={handleSelect} id="cpu" name="cpu">
+            {
+               justSelected ? (<option hidden selected value={0}>Selecione um Processador</option>) :
+               (<></>)
+            }
             {
                 typeof cpuFamily != 'undefined' ? (
                     cpuFamily.map((item, index) => (

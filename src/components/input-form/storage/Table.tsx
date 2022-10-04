@@ -4,13 +4,12 @@ import { TableReceiptRow } from "../../../types/Props";
 
 export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRows, rows, setAdded, setCurrentStorage, currentStorage }: TableReceiptRow) => {
 
-    const activeRows = rows;
+    let activeRows = rows;
     let id = activeRows.length;
     const newRow: Row = { id, disk, amount };
 
-    let idDisk = currentStorage.length;
-    const receiptDisks = currentStorage;
-    const newDisk: OutputStorage = { id: idDisk, model: disk.model, amount, price: disk.price };
+    let receiptDisks = currentStorage;
+    const newDisk: OutputStorage = { id, model: disk.model, amount, price: disk.price };
 
     function receiptUpdate(receiptStorage: OutputStorage[], newDisk: OutputStorage) {
         const newArray = [...receiptStorage, newDisk];
@@ -36,7 +35,7 @@ export const TableReceipt = ({ disk, amount, addTableRow, setAddTableRow, setRow
         const newRows = rows.filter((item) => item.id !== id);
         const updateDisks = currentStorage.filter((item) => item.id !== id);
         setCurrentStorage(updateDisks);
-        setRows(newRows);
+        setRows(newRows);   
     }
 
     return (
