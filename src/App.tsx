@@ -22,16 +22,19 @@ const App = () => {
       price: 0
     },
     storage: [{
+      id: 0,
       model: '',
       price: 0,
       amount: 0
     }]
   });
 
+  let [price, setPrice] = useState<number>(0);
+
   return (
     <>
-      <InputForm setReceipt={setReceipt} />
-      <Output receipt={receipt} />
+      <InputForm setReceipt={setReceipt} setPrice={setPrice} />
+      <Output receipt={receipt} price={price} />
     </>
   );
 }

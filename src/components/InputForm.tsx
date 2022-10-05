@@ -5,7 +5,7 @@ import { Server, Disk, OutputServer, OutputMemory, OutputCpu, OutputStorage } fr
 import { InputFormType } from '../types/Props';
 import { useEffect, useState } from 'react';
 
-const LeftSide = ({ setReceipt }: InputFormType) => {
+const LeftSide = ({ setReceipt, setPrice }: InputFormType) => {
 
     const serverList: Server[] = [
         { brand: 'Dell PowerEdge', model: 'R410', memory: 128, cpuFamily: ['5500', '5600'], price: 2050 },
@@ -35,7 +35,7 @@ const LeftSide = ({ setReceipt }: InputFormType) => {
         size: 0,
         price: 0
     });
-    
+
     let [currentStorage, setCurrentStorage] = useState<OutputStorage[]>([{
         id: 0,
         model: '',
@@ -43,26 +43,50 @@ const LeftSide = ({ setReceipt }: InputFormType) => {
         amount: 0
     }]);
 
+    function storageArrayPrice() {
+        let prices: number[] = []
+        currentStorage.forEach(element => {
+            prices = [...prices, element.price]
+        });
+        return prices;
+    }
+
     useEffect(() => {
         setReceipt({
             server: currentServer,
             cpu: currentCpu,
             memory: currentMemory,
             storage: currentStorage
+        });
+
+        let priceArray = [
+            currentServer.price,
+            currentCpu.price,
+            currentMemory.price];
+
+        let fullArray = priceArray.concat(storageArrayPrice());
+
+        let arraySum: number = 0;
+
+        fullArray.forEach(e => {
+            arraySum = arraySum + e
         })
+
+        setPrice(arraySum);
+
     }, [currentServer, currentCpu, currentMemory, currentStorage])
 
-    return (
-        <section className='input-form'>
-            <h1 className='title'>Configuração do Servidor</h1>
-            <div className='input-field mt-20'>
-                <SelectField servers={serverList} setCurrentServer={setCurrentServer} setCurrentCpu={setCurrentCpu} setCurrentMemory={setCurrentMemory} />
-                <div className="storage-row vw-95 container-xl mt-30">
-                    <StorageField disks={diskList} setCurrentStorage={setCurrentStorage} currentStorage={currentStorage}/>
-                </div>
+return (
+    <section className='input-form'>
+        <h1 className='title'>Configuração do Servidor</h1>
+        <div className='input-field mt-20'>
+            <SelectField servers={serverList} setCurrentServer={setCurrentServer} setCurrentCpu={setCurrentCpu} setCurrentMemory={setCurrentMemory} />
+            <div className="storage-row vw-95 container-xl mt-30">
+                <StorageField disks={diskList} setCurrentStorage={setCurrentStorage} currentStorage={currentStorage} />
             </div>
-        </section>
-    )
+        </div>
+    </section>
+)
 }
 
 export default LeftSide;

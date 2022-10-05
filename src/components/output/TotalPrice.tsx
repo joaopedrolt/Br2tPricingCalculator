@@ -1,13 +1,9 @@
-import { useState } from "react";
+import { TotalPriceType } from "../../types/Props";
 
-const TotalPrice = () => {
-
-    let [price, setPrice] = useState('');
-    
+const TotalPrice = ({ price }: TotalPriceType) => {
     return (
-        <span className='mt-16 span-price'>Preço: R$ 0000,00</span>
+        <span className='mt-16 span-price'>Preço: R$ {price}</span>
     )
-
 }
 
 export default TotalPrice;
