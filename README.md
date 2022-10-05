@@ -1,1 +1,1 @@
-Aplicação Web Front-End para gerar recibo da configuração de produtos selecionados para a empresa BR2TI. Tecnologias Utilizadas: React.Js. Responsivo. Api no Repositorio: 
+Aplicação Web Front-End para gerar recibo da configuração de produtos selecionados para a empresa BR2TI. Tecnologias Utilizadas: React.Js, vite. Responsivo. Api no Repositorio: ------.
