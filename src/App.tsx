@@ -22,6 +22,7 @@ const App = () => {
       price: 0
     },
     storage: [{
+      id: 0,
       model: '',
       price: 0,
       amount: 0
