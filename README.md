@@ -1,4 +1,4 @@
-<h2 align="center">Calculadora de Índice de massa corporal</h2>
+<h2 align="center">Calculadora de preço para empresa Br2ti</h2>
 
 <h3 align="center">Informações</h3>
  
