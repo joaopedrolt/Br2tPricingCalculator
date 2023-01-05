@@ -2,7 +2,7 @@
 
 <h3 align="center">Informações</h3>
  
-- Nome do Projeto: Protótipo calculadora de preços BR2TI.
+- Nome do Projeto: Calculadora de preços BR2TI.
 - Autoria: Todo o código de autoria própria.
 - Proposito: Protótipo web front-end para facilitar os cálculos dos preços dos produtos.
 - Progresso: Completo, porém pode ser aprimorado.
