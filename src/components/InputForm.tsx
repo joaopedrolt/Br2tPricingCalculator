@@ -79,6 +79,7 @@ const LeftSide = ({ setReceipt, setPrice }: InputFormType) => {
 return (
     <section className='input-form'>
         <h1 className='title'>Configuração do Servidor</h1>
+        <h5 className='title'>João Pedro Lima Teixeira ©</h5>
         <div className='input-field mt-20'>
             <SelectField servers={serverList} setCurrentServer={setCurrentServer} setCurrentCpu={setCurrentCpu} setCurrentMemory={setCurrentMemory} />
             <div className="storage-row vw-95 container-xl mt-30">
