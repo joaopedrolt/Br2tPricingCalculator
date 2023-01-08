@@ -27,6 +27,6 @@
 
 <h3 align="center">Imagens do Software</h3>
 
-<div align="center"><img src="http://drive.google.com/uc?export=view&id=1cp0gV47c8YX5aI2LOngPTEqDjWEra6ly"  width=600 alt="Imagem 1" /></div>
+<div align="center"><img src="http://drive.google.com/uc?export=view&id=1OGPiCLZAUXSxwyN-z3S5YXu2n3I-Chp6" width=300 alt="Imagem 1" /></div>
 
-<div align="center"><img src="http://drive.google.com/uc?export=view&id=1OGPiCLZAUXSxwyN-z3S5YXu2n3I-Chp6" width=300 alt="Imagem 2" /></div>
+<div align="center"><img src="http://drive.google.com/uc?export=view&id=1cp0gV47c8YX5aI2LOngPTEqDjWEra6ly"  width=600 alt="Imagem 2" /></div>
